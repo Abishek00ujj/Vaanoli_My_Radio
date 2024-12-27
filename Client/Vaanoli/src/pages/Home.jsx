@@ -37,7 +37,7 @@ const Home = () => {
         {
             loading?(
               <>
-                 <div className='w-screen h-screen flex justify-center items-center'>
+                 <div className='w-screen h-screen flex justify-center items-center bg-black'>
                     <img src={loadingm}  alt="" className='w-[100px] h-[100px]' />
                  </div>
               </>
