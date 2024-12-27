@@ -51,7 +51,7 @@ const Home = () => {
              </>
             )
         }
-      <div className='w-screen h-10 text-white'>
+      <div className='w-screen h-auto text-white bg-black pt-2'>
           <div className='w-full flex justify-center space-x-3'>
              <p>Follow me on:</p><div className='flex space-x-4'><a href="https://github.com/Abishek00ujj"><Github /></a> <a href="https://www.linkedin.com/in/abisheks22it/"><Linkedin/></a></div>
           </div>
