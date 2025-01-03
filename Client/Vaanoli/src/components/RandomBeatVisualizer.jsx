@@ -13,7 +13,7 @@ const RandomBeatVisualizer = (props) => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center bg-[#121212]">
+    <div className="flex justify-center items-center bg-black">
       <div className="flex items-center space-x-1">
         {bars.map((height, index) => (
           <div
