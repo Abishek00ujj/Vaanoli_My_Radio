@@ -54,7 +54,7 @@ export const Player = () => {
 
   return (
     <>
-      <div className="w-screen h-screen bg-[#121214] flex flex-col space-y-10 items-center justify-around">
+      <div className="w-screen h-screen bg-black flex flex-col space-y-10 items-center justify-around">
         <div className="w-full flex justify-start">
           <ArrowLeft
             className="bg-red-500 rounded-full m-1"
