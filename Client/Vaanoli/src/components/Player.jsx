@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import song from '../assets/song.png';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import RandomBeatVisualizer from './RandomBeatVisualizer';
+import loadinggroic from '../assets/loading_groic.gif';
+import loadinggroic2 from '../assets/loading_groic2.gif';
 
 const getRandomColor = () => {
   const letters = '0123456789ABCDEF';
@@ -21,11 +22,12 @@ export const Player = () => {
   if (!data) {
     return <div>Loading...</div>;
   }
+
   const [borderColor, setBorderColor] = useState(getRandomColor);
   useEffect(() => {
     const interval = setInterval(() => {
       setBorderColor(getRandomColor());
-    },5000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -33,6 +35,22 @@ export const Player = () => {
   const handleBack = () => {
     navigate('/');
   };
+
+  const [Image, setImage] = useState(loadinggroic);
+  const Images = [loadinggroic, loadinggroic2];
+  const interval = 5000; 
+
+  useEffect(() => {
+    const imageChangeInterval = setInterval(() => {
+        setImage((prevImage) => {
+            const currentIndex = Images.indexOf(prevImage);
+            const nextIndex = (currentIndex + 1) % Images.length;
+            return Images[nextIndex]; 
+        });
+    }, interval);
+
+    return () => clearInterval(imageChangeInterval);
+  }, []);
 
   return (
     <>
@@ -52,17 +70,16 @@ export const Player = () => {
           </p>
         </div>
         <div
-          className={`max-2xl:w-[80%] w-[400px] h-[400px] rounded-full  bg-slate-400/10 backdrop-blur-3xl flex justify-center items-center`}
+          className={`max-2xl:w-[90%] max-2xl:h-[60%] w-[300px] h-[300px] rounded-full bg-slate-400/10 backdrop-blur-3xl flex justify-center items-center`}
           style={{
-            // border: `10px solid ${borderColor}`,
-            boxShadow: `0 0 20px 1px ${borderColor}`, 
+            boxShadow: `0 0 20px 1px ${borderColor}`,
           }}
         >
-          <img src={song} alt="" />
+          <img src={Image} alt="loading" />
         </div>
         <div>
           <div className="w-full h-auto flex justify-center">
-            <RandomBeatVisualizer  data={borderColor} />
+            <RandomBeatVisualizer data={borderColor} />
           </div>
           <audio autoPlay controls className="w-[400px] h-20 rounded-lg">
             <source src={data.src} type="audio/mpeg" className="bg-black" />
